@@ -17,8 +17,8 @@ def rept(x):
 def dedelta(x):
     y=x[0]
     for i in range(len(x)-1):
-        if x[i+1]=="0": y=y+x[i]
-        else: y=y+str(abs(int(x[i])-1))
+        if x[i+1]=="0": y=y+y[i]
+        else: y=y+str(abs(int(y[i])-1))
     return y
 yn=input("Are you encoding a number? Y/N ")
 x=bin(int(input("Please input a number: ")))[2:]
@@ -34,8 +34,8 @@ if yn=="Y" or yn=="y":
     for i in range(y): x=delta(x)
     y=bin(y+1)[2:]
     y=("1"*(len(y)-2))+"0"+y[1:]
-    print(int("1"+y+x,2))
+    print(int("1"+y+x,2),"1"+y+x)
 else:
     x=x[rept(x)[0]*2+1:]
     for i in range(rept(xx)[1]): x=dedelta(x)
-    print(int(x,2))
+    print(int(x,2),x)
