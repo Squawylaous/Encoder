@@ -41,7 +41,7 @@ def rle(x):
     y=0
     z=0
     v=0
-    for i in range(len(x)-1):
+    for i in range(len(x)):
         if x[i]=="0": y+=1
         if x[i]=="1": z+=1
     if y>z: ww="0"
@@ -68,7 +68,7 @@ def derle(x):
     y=w*(rept(x)[1]-1)
     x=rept(x)[0]
     while x!="":
-        y=y+z+w*(rept(x)[1]-1)
+        y=y+z+(w*(rept(x)[1]-1))
         x=rept(x)[0]
     if d!=w: y=y+d
     return y
@@ -77,16 +77,15 @@ x=bin(int(input("Please input a number: "),16))[2:]
 y=0
 if yn=="Y" or yn=="y":
     xx=x
-    for i in range(len(xx)-1):
+    for i in range(len(xx)):
         xx=delta(xx)
         if deltaeff(xx,i+1)>y: y=i+1
     for i in range(y): x=delta(x)
-    x=rle(numshort(y)+x)
-    print(hex(int(x,2))[2:],x)
+    x=rle(numshort(y+1)+x)
+    print(hex(int(x,2))[2:])
 else:
     x=derle(x)
-    print(x)
     xx=x
     x=rept(x)[0]
-    for i in range(rept(xx)[1]): x=dedelta(x)
-    print(hex(int(x,2))[2:],x)
+    for i in range(rept(xx)[1]-1): x=dedelta(x)
+    print(hex(int(x,2))[2:])
