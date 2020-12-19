@@ -87,7 +87,14 @@ def decode(x):
     x=rept(x)[0]
     for i in range(rept(xx)[1]-1): x=dedelta(x)
     return hex(int(x,2))[2:]
+def percreduc(x,xx):
+    if x<xx: x=(x/xx)*100
+    else: (xx/x)*-100
+    return round(x,2)
 yn=input("Are you encoding a number? Y/N ")
 x=bin(int(input("Please input a number: "),16))[2:]
-if yn=="Y" or yn=="y": print(encode(x))
-else: print(decode(x))
+if yn=="Y" or yn=="y": xx=encode(x)
+else: xx=decode(x)
+if yn=="Y" or yn=="y": perc="\n"+str(percreduc(len(x),len(xx)))+"%"
+else: perc=""
+print(xx,perc)
