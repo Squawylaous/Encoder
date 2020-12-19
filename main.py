@@ -72,20 +72,22 @@ def derle(x):
         x=rept(x)[0]
     if d!=w: y=y+d
     return y
-yn=input("Are you encoding a number? Y/N ")
-x=bin(int(input("Please input a number: "),16))[2:]
-y=0
-if yn=="Y" or yn=="y":
+def encode(x):
+    y=0
     xx=x
     for i in range(len(xx)):
         xx=delta(xx)
         if deltaeff(xx,i+1)>y: y=i+1
     for i in range(y): x=delta(x)
     x=rle(numshort(y+1)+x)
-    print(hex(int(x,2))[2:])
-else:
+    return hex(int(x,2))[2:]
+def decode(x):
     x=derle(x)
     xx=x
     x=rept(x)[0]
     for i in range(rept(xx)[1]-1): x=dedelta(x)
-    print(hex(int(x,2))[2:])
+    return hex(int(x,2))[2:]
+yn=input("Are you encoding a number? Y/N ")
+x=bin(int(input("Please input a number: "),16))[2:]
+if yn=="Y" or yn=="y": print(encode(x))
+else: print(decode(x))
